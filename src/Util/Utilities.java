@@ -1,7 +1,6 @@
 package Util;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Utilities {
 	private static Utilities instance = null;

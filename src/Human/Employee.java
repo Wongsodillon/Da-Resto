@@ -1,6 +1,5 @@
 package Human;
 
-import Customer.Customer;
 import Mediator.Mediator;
 
 public abstract class Employee extends Human {

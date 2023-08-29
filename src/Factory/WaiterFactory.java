@@ -1,6 +1,5 @@
 package Factory;
 
-import Chef.Chef;
 import Mediator.Mediator;
 import Waiter.Waiter;
 

@@ -4,14 +4,12 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import Chef.Chef;
-import Chef.ChefDone;
 import Chef.ChefIdle;
 import Customer.Customer;
 import Human.Human;
 import Restaurant.Restaurant;
 import Waiter.Waiter;
 import Waiter.WaiterIdle;
-import Waiter.WaiterServing;
 
 public class Mediator implements MediatorInterface {
 
