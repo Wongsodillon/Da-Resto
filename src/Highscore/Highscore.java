@@ -26,7 +26,9 @@ public class Highscore {
 	}
 	public void displayScore() {
 		util.cls();
-		sort();
+		scoreList.sort((a, b) -> {
+			return b.getScore() - a.getScore();
+		});
 		System.out.println("================================================");
 		System.out.printf("| %-4s | %-28s| %-7s |\n", "Rank", "Restaurant Name", "Score");
 		System.out.println("------------------------------------------------");
@@ -61,8 +63,5 @@ public class Highscore {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	private void sort() {
-		
 	}
 }

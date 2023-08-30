@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Chef.Chef;
 import Customer.Customer;
+import Customer.CustomerGenerator;
 import Factory.ChefFactory;
 import Factory.CustomerFactory;
 import Factory.WaiterFactory;
@@ -26,6 +27,7 @@ public class Restaurant extends GameThread {
 	CustomerFactory customerFactory;
 	ChefFactory chefFactory;
 	WaiterFactory waiterFactory;
+	CustomerGenerator generator;
 	private Restaurant() {
 		
 	}
@@ -37,6 +39,9 @@ public class Restaurant extends GameThread {
 		waiterFactory = new WaiterFactory();
 		chefFactory = new ChefFactory();
 		customerFactory = new CustomerFactory();
+		generator = new CustomerGenerator(mediator);
+		new Thread(generator).start();
+		generator.startRandomize();
 		initStaff();
 	}
 	@Override
@@ -51,9 +56,6 @@ public class Restaurant extends GameThread {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
-		if (Utilities.getRand().nextInt(4) == 0 && mediator.getCustomers().size() != seats) {
-			mediator.addCustomer(customerFactory.createCustomer(mediator));
 		}
 	}
 	public static Restaurant getInstance() {
@@ -117,6 +119,7 @@ public class Restaurant extends GameThread {
 		System.out.printf("        Size  : %d Seats\n\n", this.seats);
 	}
 	public void pauseRestaurant() {
+		generator.pause();
 		this.pause();
 		for(Chef c : mediator.getChefs()) {
 			c.pause();
@@ -129,6 +132,7 @@ public class Restaurant extends GameThread {
 		}
 	}
 	public void resumeRestaurant() {
+		generator.resume();
 		this.resume();
 		for(Chef c : mediator.getChefs()) {
 			c.resume();
@@ -141,6 +145,7 @@ public class Restaurant extends GameThread {
 		}
 	}
 	public void stopBusiness() {
+		generator.stop();
 		this.stop();
 		for(Chef c : mediator.getChefs()) {
 			c.stop();

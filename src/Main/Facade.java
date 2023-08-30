@@ -78,11 +78,11 @@ public class Facade {
 		}
 		else if (menu == 1) {
 			restaurant.hireWaiter();
-			restaurant.resume();
+			resumeRestaurant();
 		}
 		else if (menu == 2) {
 			restaurant.hireChef();
-			restaurant.resume();
+			resumeRestaurant();
 		}
 	}
 	public void resumeRestaurant() {
