@@ -6,7 +6,6 @@ import Chef.Chef;
 import Customer.Customer;
 import Customer.CustomerGenerator;
 import Factory.ChefFactory;
-import Factory.CustomerFactory;
 import Factory.WaiterFactory;
 import Highscore.Highscore;
 import Main.GameThread;
@@ -24,7 +23,6 @@ public class Restaurant extends GameThread {
 	private int seats;
 	private int score;
 	Mediator mediator;
-	CustomerFactory customerFactory;
 	ChefFactory chefFactory;
 	WaiterFactory waiterFactory;
 	CustomerGenerator generator;
@@ -38,10 +36,8 @@ public class Restaurant extends GameThread {
 		mediator = new Mediator();
 		waiterFactory = new WaiterFactory();
 		chefFactory = new ChefFactory();
-		customerFactory = new CustomerFactory();
-		generator = new CustomerGenerator(mediator);
+		generator = CustomerGenerator.getInstance(mediator);
 		new Thread(generator).start();
-		generator.startRandomize();
 		initStaff();
 	}
 	@Override

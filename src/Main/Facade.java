@@ -16,6 +16,7 @@ public class Facade {
 		System.out.println("1. Continue Businesss");
 		System.out.println("2. Upgrade Restaurant");
 		System.out.println("3. Close Business");
+		System.out.printf("Input [1..3]: ");
 		restaurant.pauseRestaurant();
 	}
 	public void menuMain() {
@@ -24,6 +25,7 @@ public class Facade {
 		System.out.println("1. Continue Businesss");
 		System.out.println("2. Upgrade Restaurant");
 		System.out.println("3. Close Business");
+		System.out.printf("Input [1..3]: ");
 		do {
 			menu = scan.nextInt(); scan.nextLine();
 		}

@@ -161,7 +161,7 @@ public class Mediator implements MediatorInterface {
 			System.out.println();
 		}
 		System.out.println("=========================================================================================");
-		System.out.println();
+		System.out.println("                          Press Enter to go to pause menu                                ");
 	}
 	public Vector<Customer> getCustomers() {
 		return customers;

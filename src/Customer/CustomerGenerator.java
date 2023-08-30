@@ -4,34 +4,35 @@ import Factory.CustomerFactory;
 import Main.GameThread;
 import Mediator.Mediator;
 import Restaurant.Restaurant;
-import Util.Observer;
 import Util.Utilities;
 
-public class CustomerGenerator extends GameThread implements Observer {
+public class CustomerGenerator extends GameThread {
 
 	Restaurant restaurant;
 	CustomerFactory customerFactory;
 	Mediator mediator;
-	public CustomerGenerator(Mediator mediator) {
+	private static CustomerGenerator instance = null;
+	private CustomerGenerator(Mediator mediator) {
 		restaurant = Restaurant.getInstance();
 		customerFactory = new CustomerFactory();
 		this.mediator = mediator;
+	}
+	public static CustomerGenerator getInstance(Mediator mediator) {
+		if (instance == null) {
+			instance = new CustomerGenerator(mediator);
+		}
+		return instance;
 	}
  	@Override
 	public void doSomething() {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (Utilities.getRand().nextInt(4) == 0 && mediator.getCustomers().size() < restaurant.getSeats()) {
 			mediator.addCustomer(customerFactory.createCustomer(mediator));
 		}
-	}
-	@Override
-	public void startRandomize() {
-		doSomething();
 	}
 
 }
